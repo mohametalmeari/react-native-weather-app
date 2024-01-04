@@ -11,34 +11,46 @@ import { Feather } from '@expo/vector-icons'
 import IconText from '../components/IconText'
 
 const City = () => {
+  const {
+    container,
+    imageLayout,
+    cityName,
+    countryName,
+    cityText,
+    populationWrapper,
+    populationText,
+    riseSetWrapper,
+    riseSetText,
+    rowLayout
+  } = styles
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={container}>
       <ImageBackground
         source={require('../../assets/city-background.jpg')}
-        style={styles.imageLayout}
+        style={imageLayout}
       >
-        <Text style={[styles.cityName, styles.cityText]}>London</Text>
-        <Text style={[styles.countryName, styles.cityText]}>UK</Text>
-        <View style={[styles.populationWrapper, styles.rowLayout]}>
+        <Text style={[cityName, cityText]}>London</Text>
+        <Text style={[countryName, cityText]}>UK</Text>
+        <View style={populationWrapper}>
           <IconText
             iconName={'user'}
             iconColor={'red'}
             bodyText={'8000'}
-            bodyTextStyles={styles.populationText}
+            bodyTextStyles={populationText}
           />
         </View>
-        <View style={[styles.riseSetWrapper, styles.rowLayout]}>
+        <View style={[riseSetWrapper, rowLayout]}>
           <IconText
             iconName={'sunrise'}
             iconColor={'white'}
             bodyText={'10:45:12am'}
-            bodyTextStyles={styles.riseSetText}
+            bodyTextStyles={riseSetText}
           />
           <IconText
             iconName={'sunset'}
             iconColor={'white'}
             bodyText={'17:45:12pm'}
-            bodyTextStyles={styles.riseSetText}
+            bodyTextStyles={riseSetText}
           />
         </View>
       </ImageBackground>
