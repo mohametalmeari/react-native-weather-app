@@ -12,7 +12,9 @@ const Counter = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{`count: ${count}`}</Text>
+      <Text
+        style={styles.title}
+      >{`count: ${count}, new count: ${newCount}`}</Text>
       <Button
         color={'red'}
         title="Increase the count"
