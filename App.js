@@ -5,12 +5,22 @@ import Tabs from './src/components/Tabs'
 import * as Location from 'expo-location'
 import { WEATHER_API_KEY } from '@env'
 
-// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
 const App = () => {
   const [isLoading, setIsLoading] = useState(true)
-  const [location, setLocation] = useState(null)
   const [error, setError] = useState(null)
+  const [weather, setWeather] = useState([])
+  const [lat, setLat] = useState([])
+  const [lon, setLon] = useState([])
+  const fetchWeatherData = async () => {
+    try {
+      const res = await fetch(`api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
+      const data = await res.json()
+      setWeather(data)
+    } catch (e) {
+      setError('could not fetch weather data')
+    } finally {
+      setIsLoading(false)
+  }}
   useEffect(() => {
     ;(async () => {
       let { status } = await Location.requestForegroundPermissionsAsync()
@@ -19,14 +29,16 @@ const App = () => {
         return
       }
       let location = await Location.getCurrentPositionAsync({})
-      setLocation(location)
+      setLat(location.coords.latitude)
+      setLon(location.coords.longitude)
+      await fetchWeatherData()
     })()
-  }, [])
+  }, [lat, lon])
 
-  if (location) {
-    console.log(location)
+  if (weather.length) {
+    console.log('weather: ', weather)
   } else {
-    console.log('no location')
+    console.log('no weather')
   }
 
   if (isLoading) {
