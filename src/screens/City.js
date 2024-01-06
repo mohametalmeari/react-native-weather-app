@@ -10,7 +10,7 @@ import {
 import IconText from '../components/IconText'
 import moment from 'moment'
 
-const City = ({weatherData}) => {
+const City = ({ weatherData }) => {
   const {
     container,
     imageLayout,

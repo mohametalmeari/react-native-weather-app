@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   dateTextWrapper: {
-    flexDirection: 'column',
+    flexDirection: 'column'
   }
 })
 export default ListItem
